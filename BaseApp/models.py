@@ -61,3 +61,10 @@ class Messages(models.Model):
 
 class ListCity(models.Model):
     Cities = models.CharField(max_length=200)
+
+class TypeSubject(models.Model):
+    type_subject = models.CharField(max_length=150)
+
+class Subject(models.Model):
+    subject = models.CharField(max_length=150)
+    type_subject = models.ForeignKey(TypeSubject)

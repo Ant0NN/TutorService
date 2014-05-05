@@ -3,7 +3,7 @@ __author__ = '12'
 
 
 from django.contrib import admin
-from BaseApp.models import CustomUser, Tutor, Additional_information, Pupil, Mail, Messages, Reviews
+from BaseApp.models import CustomUser, Tutor, Additional_information, Pupil, Mail, Messages, Reviews, TypeSubject, Subject
 
 class ViewDispForCustomUser(admin.ModelAdmin):
     list_display = ('username', 'first_name', 'patronymic', 'last_name', 'email', 'City', 'address')
@@ -26,6 +26,11 @@ class ViewDispForMessages(admin.ModelAdmin):
 class ViewDispForReview(admin.ModelAdmin):
     list_display = ('tutor', 'review')
 
+class ViewDispForTypeSubject(admin.ModelAdmin):
+    list_display = ('type_subject',)
+
+class ViewDispForSubject(admin.ModelAdmin):
+    list_display = ('subject', 'type_subject',)
 
 admin.site.register(CustomUser, ViewDispForCustomUser)
 admin.site.register(Tutor, ViewDispForTutor)
@@ -34,3 +39,5 @@ admin.site.register(Additional_information, ViewDispForAddInf)
 admin.site.register(Mail, ViewDispForMail)
 admin.site.register(Messages, ViewDispForMessages)
 admin.site.register(Reviews, ViewDispForReview)
+admin.site.register(TypeSubject, ViewDispForTypeSubject)
+admin.site.register(Subject, ViewDispForSubject)

@@ -263,19 +263,6 @@ body {
 	font-weight: bold;
 }
 
-.center {
-	position: absolute;
-	left: 330px;
-	top: 20px;
-	width: 522px;
-}
-
-.center .title {
-	color: #5ea3df;
-	font: 19px/1.5em Times New Roman, serif;
-	font-weight: bold;
-}
-
 .square {
 	background: #ebf0f3;
 	height: 15px;
@@ -293,4 +280,43 @@ body {
 	top: 0px;
 	right: 0px;
 	cursor: pointer;
+}
+
+.center {
+	position: absolute;
+	left: 330px;
+	top: 20px;
+	width: 522px;
+}
+
+.center .title {
+	color: #5ea3df;
+	font: 19px/1.5em Times New Roman, serif;
+	font-weight: bold;
+}
+
+.center .information .person {
+	height: 300px;
+
+	position: relative;
+}
+
+.person img {
+	height: 100px;
+	width: 100px;
+}
+
+.center .information .person .left {
+	width: 50%;
+}
+
+.center .information .person .right{
+	width: 50%;
+
+	position: absolute;
+	right: 100px;
+	top: 0;
+
+	color: black;
+	line-height: 1.5em;
 }

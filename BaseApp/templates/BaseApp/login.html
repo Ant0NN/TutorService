@@ -3,10 +3,9 @@
 {% block mainarea %}
     {% if user.is_anonymous %}
             <form action="{% url 'tutor_service:login' %}" method="POST">{% csrf_token %}
-                <span class="text">Логин:</span>
-                <span class="text">Пароль:</span>
-                <br><input type="text" name="username">
-                <input type="password" name="password">
+                {% for loginform in f %}
+                    {{loginform}}
+                {% endfor %}
                 <input type="submit" value="Вход">
             </form>
 				<br><span class="link"><a href="{% url 'tutor_service:registration' %}" id="reg">Регистрация</a></span>
@@ -17,7 +16,7 @@
 {% block mail %}
         {% if user.is_authenticated %}
         <div class="mail">
-
+            <a href="{% url 'tutor_service:settings' %}">Настройки</a>
                {% for e in email.mail_set.all %}
                      <p>{{e.from_email}}</p><br>
                      <p>{{e.from_user}}</p><br>
@@ -43,8 +42,7 @@
 {% endblock %}
 
 {% block list %}
-        <div>
-
+        <div class="information">
                 {% for user in custom_user %}
 
                     {% if is_authenticated %}
@@ -59,32 +57,43 @@
                             </div>
                         </div>
                     {% endif %}
-
-                    <div>
-                        {{ user.first_name }}
-                        {{ user.patronymic }}
-                    </div>
-
+                <div class="person">
+                    <div class="left">
+                        <br>
                     {% for tutors in user.tutor_set.all %}
-                        <img class="img-thumbnail" src="/media/{{ tutors.avatar }}" width="20%"/>
-                        <p>{{tutors.rating}}</p>
-                        <p>{{tutors.experience}}</p>
-                        <p>{{tutors.education}}</p>
-                        <p>{{tutors.work}}</p>
-                        <p>{{tutors.venue_of}}</p>
+                        <img class="img-thumbnail" src="/media/{{ tutors.avatar }}" width="20%"/><br>
+                        {{tutors.rating}}
+                    </div>
+                        <div class="right">
+                            {{ user.first_name }}
+                            {{ user.patronymic }}<br>
+                            Стоимость: {{tutors.experience}}<br>
+                            Образование: {{tutors.education}}<br>
+                            Место работы: {{tutors.work}}<br>
+                            Место проведения: {{tutors.venue_of}}<br>
 
                     {% endfor %}
 
                     {% for add in user.additional_information_set.all %}
-                        <p>{{add.subject_name}}</p>
-                        <p>{{add.section}}</p>
-                        <p>{{add.additions}}</p>
-                        <p>{{add.pupil_category}}</p>
-                        <p>{{add.price}}</p>
+                            Предмет: {{add.subject_name}}<br>
+                            Раздел: {{add.section}}<br>
+                            Дополнение: {{add.additions}}<br>
+                            Категория ученика: {{add.pupil_category}}<br>
+                            Цена: {{add.price}}<br>
                     {% endfor %}
+                        </div>
+                </div>
                 <hr>
 
                 {% endfor %}
-
+                {% if user.is_authenticated %}
+                       {% for page in count %}
+                                <a href="{% url 'tutor_service:list_homepage' page %}">{{page}}</a>
+                       {% endfor %}
+                {% else %}
+                        {% for page in count %}
+                                <a href="{% url 'tutor_service:list' page %}">{{page}}</a>
+                        {% endfor %}
+                {% endif %}
         </div>
 {% endblock %}

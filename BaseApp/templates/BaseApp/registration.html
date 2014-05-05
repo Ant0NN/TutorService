@@ -21,7 +21,7 @@
 {% else %}
     <br><br>
 {% endif %}
-<form method="POST" action="{% url 'tutor_service:registration' %}">{% csrf_token %}
+<form method="POST" action="{% url 'tutor_service:registration' %}" enctype="multipart/form-data">{% csrf_token %}
     <div>
         {{reg_form.as_p}}
          <div class="tutor">

@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from BaseApp.models import CustomUser, Tutor, Pupil, Additional_information, Mail, Messages, Tweet, Views
+from BaseApp.models import CustomUser, Tutor, Pupil, Additional_information, Mail, Messages, Views, TypeSubject, Subject
 import datetime
 import re
 from django.views.generic import ListView
@@ -28,6 +28,13 @@ class homepage(ListView, TemplateResponseMixin, FormMixin):
     def get_context_data(self, **kwargs):
         context = super(homepage, self).get_context_data(**kwargs)
         context["contact_form"] = Contact_form()
+        context["type_subject"] = TypeSubject.objects.all()
+        count = Tutor.objects.count()
+        p = []
+        for page in range(count/self.paginate_by):
+            p.append(page + 1)
+        context["count"] = p
+
         if self.request.user.is_authenticated():
             context["email"] = CustomUser.objects.get(id=self.request.user.id)
             u = Tutor.objects.filter(username=self.request.user.id)
