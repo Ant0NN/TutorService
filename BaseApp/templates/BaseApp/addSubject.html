@@ -1,7 +1,7 @@
 {% extends 'BaseApp/application.html' %}
 
 {% block add %}
-        <div>
+        <div class="newSubject">
             {% for add in subject_list.additional_information_set.all %}
                         <p>{{add.subject_name}}</p>
                         <p>{{add.section}}</p>

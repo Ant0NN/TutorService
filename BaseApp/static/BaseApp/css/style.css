@@ -295,6 +295,10 @@ body {
 	font-weight: bold;
 }
 
+.center .tutor {
+	display: none;
+}
+
 .center .information .person {
 	height: 300px;
 
@@ -306,17 +310,37 @@ body {
 	width: 100px;
 }
 
-.center .information .person .left {
-	width: 50%;
+.center .person .photo {
+	width: 0;
+
+	float: left;
 }
 
-.center .information .person .right{
-	width: 50%;
+.center .person {
+	width: 522px;
+}
 
-	position: absolute;
-	right: 100px;
+.center .person .about {
+	width: 200px;
+	
+	position: relative;
 	top: 0;
+	left: 150px;
+}
 
-	color: black;
-	line-height: 1.5em;
+.center .person .bid{
+	position: relative;
+
+	top: -200px;
+	right: -350px;
+}
+
+.center .person .bid input[type="checkbox"]:hover {
+	cursor: pointer;
+}
+
+.center .person .bid #bid {
+	height: 30px; 
+
+	display: none;
 }

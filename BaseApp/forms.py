@@ -82,7 +82,7 @@ class Additions_form(forms.Form):
 CHOICES_for_contact_form = (('студент', 'студент'), ('школьник', 'школьник'), ('работающий', 'работающий'))
 
 class Contact_form(forms.Form):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'имя', 'type': 'text'}), label='', required=True)
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'фамилие', 'type': 'text'}), label='', required=True)
-    category = forms.CharField(widget=forms.Select(choices=CHOICES_for_contact_form), label='', help_text="выберете категорию из списка", required=True)
-    number_telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'номер телефона', 'type': 'number'}), label='', required=True)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Имя', 'type': 'text'}), label='', required=True)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Фамилия', 'type': 'text'}), label='', required=True)
+    category = forms.CharField(widget=forms.Select(choices=CHOICES_for_contact_form), label='', help_text="<br>выберете категорию из списка", required=True)
+    number_telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Номер телефона', 'type': 'text'}), label='', required=True)

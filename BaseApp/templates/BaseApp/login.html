@@ -42,36 +42,20 @@
 {% endblock %}
 
 {% block list %}
-        <div class="information">
                 {% for user in custom_user %}
-
-                    {% if is_authenticated %}
-                        <div style="float: right">
-                            Отправить заявку: <input type="checkbox" ng-model="open"/>
-                            <div ng-show="open">
-                                 <form action="{% url 'tutor_service:send_contact_form' %}" method="post"> {% csrf_token %}
-                                        {{ contact_form.as_p }}
-                                        <input type="hidden" name="to_email" value="{{ user.email }}">
-                                        <input type="submit" name="send_statement" value="Отправить" class="btn-navbar" ng-model="send"/>
-                                 </form>
-                            </div>
-                        </div>
-                    {% endif %}
                 <div class="person">
-                    <div class="left">
-                        <br>
                     {% for tutors in user.tutor_set.all %}
+                    <div class="photo">
                         <img class="img-thumbnail" src="/media/{{ tutors.avatar }}" width="20%"/><br>
                         {{tutors.rating}}
                     </div>
-                        <div class="right">
+                    <div class="about">
                             {{ user.first_name }}
                             {{ user.patronymic }}<br>
                             Стоимость: {{tutors.experience}}<br>
                             Образование: {{tutors.education}}<br>
                             Место работы: {{tutors.work}}<br>
                             Место проведения: {{tutors.venue_of}}<br>
-
                     {% endfor %}
 
                     {% for add in user.additional_information_set.all %}
@@ -81,8 +65,18 @@
                             Категория ученика: {{add.pupil_category}}<br>
                             Цена: {{add.price}}<br>
                     {% endfor %}
-                        </div>
                 </div>
+                <div class="bid">
+                    {% if is_authenticated %}
+                            Отправить заявку: <input type="checkbox"/>
+                                 <form id="bid" action="{% url 'tutor_service:send_contact_form' %}" method="post"> {% csrf_token %}
+                                        {{ contact_form.as_p }}
+                                        <input type="hidden" name="to_email" value="{{ user.email }}">
+                                        <input type="submit" name="send_statement" value="Отправить" class="btn-navbar" ng-model="send"/>
+                                 </form>
+                    {% endif %}
+                </div>
+        </div>
                 <hr>
 
                 {% endfor %}
@@ -95,5 +89,5 @@
                                 <a href="{% url 'tutor_service:list' page %}">{{page}}</a>
                         {% endfor %}
                 {% endif %}
-        </div>
+
 {% endblock %}
