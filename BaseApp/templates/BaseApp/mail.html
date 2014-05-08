@@ -1,0 +1,43 @@
+{% extends 'BaseApp/application.html' %}
+
+{% block mail %}
+        {% if user.is_authenticated %}
+               {% for e in email.mail_set.all %}
+                     <p>{{e.from_email}}</p><br>
+                     <p>{{e.from_user}}</p><br>
+                        {% for messages in e.messages_set.all %}
+                            <p>{{messages.message}}</p><br>
+                        {% endfor %}
+                     <p>{{e.date}}</p><br>
+                     <div class="send message">
+                        {% if is_tutor %}
+                        <form action="{% url 'tutor_service:views' %}" method="post">{% csrf_token %}
+                            <input type="hidden" name="click" value="confirm"/>
+                            <input type="hidden" name="to_email" value="{{e.from_email}}"/>
+                            <input type="submit" value="Подтвердить" onclick="foo()"/>
+                        </form>
+                        <form action="{% url 'tutor_service:views' %}" method="post">{% csrf_token %}
+                            <input type="hidden" name="click" value="denial"/>
+                            <input type="hidden" name="to_email" value="{{e.from_email}}"/>
+                            <input type="button" value="Отклонить" onclick="foo()"/>
+                        </form>
+                         <script>
+                            function foo() {
+                                alert(true);
+                                var xhr = new XMLHttpRequest();
+                                var params = 'click=' + encodeURIComponent(click) +
+                                  '&to_email=' + encodeURIComponent(to_email);
+                                xhr.open("POST", "{% url 'tutor_service:views' %}", true)
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+                                xhr.onreadystatechange = function() {
+                                    if (xhr.readyState != 4) return;
+                                }
+                                xhr.send(params);
+                            }
+                         </script>
+                        {% endif %}
+                     </div>
+               {% endfor %}
+        {% endif %}
+{% endblock %}

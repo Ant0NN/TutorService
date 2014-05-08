@@ -1,7 +1,6 @@
 {% extends 'BaseApp/application.html' %}
 
 {% block add %}
-        <div class="newSubject">
             {% for add in subject_list.additional_information_set.all %}
                         <p>{{add.subject_name}}</p>
                         <p>{{add.section}}</p>
@@ -14,5 +13,4 @@
                     {{add_form.as_p}}
                     <input type="submit" value="Save"/>
             </form>
-        </div>
 {% endblock %}

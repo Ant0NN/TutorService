@@ -9,10 +9,9 @@ import json
 CHOICES = ((1, '-------'), (2, 'Репетитор'), (3, 'Ученик'))
 
 class Registration(forms.Form):
-    username = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': 'Логин'}), label='',
-                                help_text="Введите 30 символов или менее. Буквы, цифры и знаки из набора @/./+/-/_")
+    username = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': 'Логин'}), label='')
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Пароль', 'type': 'password'}),
-                                help_text="цифры 0-9,латиница,буквы верхнего и нижнего регистра", label='')
+                                label='')
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Подтверждение пароля', 'type': 'password'}), label='')
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email', 'type': 'email'}), label='')
     city = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Город', 'type': 'text'}), label='',

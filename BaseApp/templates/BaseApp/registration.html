@@ -14,14 +14,14 @@
      {% endif %}
 {% endblock %}
 
-
 {% block registration %}
+
 {% if error_message %}
     <p class="alert alert-error" id="error">{{ error_message }}</p><br/><br/>
 {% else %}
     <br><br>
 {% endif %}
-<form method="POST" action="{% url 'tutor_service:registration' %}" enctype="multipart/form-data">{% csrf_token %}
+<form id="registration" method="POST" action="{% url 'tutor_service:registration' %}" enctype="multipart/form-data">{% csrf_token %}
     <div>
         {{reg_form.as_p}}
          <div class="tutor">

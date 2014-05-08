@@ -57,34 +57,76 @@ body {
 }
 
 .menu {
-	position: absolute;
-	left: 400px;
-	bottom: 10px;
-}
+	width: 1280px;
+	height: 50px;
 
-.menu td {
-	padding-left: 20px;
+	position: relative;
+
 	font: 20px/1.5em Trebuchet MS, serif;
+	background: #3498db;	
+	font-weight: bolder;
 }
 
-.menu td a:link {
-	text-decoration: none;
-	color: black;
+.menu ul {
+	list-style: none;
+	text-align: center;
 }
 
-.menu td a:visited {
-	text-decoration: none;
-	color: black;
+.menu ul li {
+	display: inline;
+	padding: 1px 10px 20px 10px;
 }
 
-.menu td a:hover {
-	text-decoration: none;
-	color: #4493d9;
+.menu ul li:hover {
+	background: #266d9d;
+	cursor: pointer;
 }
 
-.menu td a:active {
+.menu ul li a:link {
 	text-decoration: none;
-	color: black;
+	color: white;
+}
+
+.menu ul li a:visited {
+	text-decoration: none;
+	color: white;
+}
+
+.menu ul li a:hover {
+	text-decoration: none;
+	color: white;
+}
+
+.menu ul li a:active {
+	text-decoration: none;
+	color: white;
+}
+
+.menu .left {
+    width: 0;
+    height: 0;
+	
+	position: absolute;
+	bottom: -27px;
+
+    border-top: 27px solid #266d9d; 
+    border-left: 40px solid transparent;
+
+    z-index: 2;
+    
+}
+
+.menu .right {
+	width: 0;
+    height: 0;
+	
+	position: absolute;
+	right: 0;
+	bottom: -27px;
+
+    border-top: 27px solid #266d9d; 
+    border-right: 40px solid transparent;	
+    z-index: 2;
 }
 
 .baner {
@@ -139,10 +181,11 @@ body {
 }
 
 .login input[type="submit"] {
-	height: 24px;
-	width: 50px;
+	width: 56px;
+	height: 26px;
 	color: #fef4e9;
 	border: solid 1px #2979c1;
+	border-radius: 5px;
 	background: #4091d8;
 	background: -webkit-gradient(linear, left top, left bottom, from(#76b2e5), to(#4091d8));
 	background: -moz-linear-gradient(top,  #76b2e5,  #4091d8);
@@ -185,16 +228,19 @@ body {
 }
 
 .wrap .leftcolum {
-	background: white;
+	width: 185px;
+	height: 1326px;
+
 	position: absolute;
-	height: 1480px;
-	width: 250px;
-	left: 60px;
+	top: -1px;	
+	left: 40px;
+
+	background: #2c3e50;
 	border-right: 1px solid #c5cfdc;
 }
 
 .wrap .list {
-	color: #5ea3df;
+	color: white;
 	font: 17px/1.5em Arial;
 	font-weight: bold;
 	margin-top: 50px;
@@ -214,12 +260,30 @@ body {
 	padding-top: 15px; 
 }
 
+.wrap .list li:hover {
+	background: #2c3e50; /* Old browsers */
+	background: -moz-linear-gradient(left, #2c3e50 0%, #526170 50%, #9ba3ac 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#2c3e50), color-stop(50%,#526170), color-stop(100%,#9ba3ac)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #2c3e50 0%,#526170 50%,#9ba3ac 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #2c3e50 0%,#526170 50%,#9ba3ac 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #2c3e50 0%,#526170 50%,#9ba3ac 100%); /* IE10+ */
+	background: linear-gradient(to right, #2c3e50 0%,#526170 50%,#9ba3ac 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c3e50', endColorstr='#9ba3ac',GradientType=1 ); /* IE6-9 */
+}
+
 .wrap .list li ul li:nth-last-child(1){
 	border: 1px solid white;
 }
 
 .wrap .list li ul li:hover {
-	background: #CCCCCC;
+	background: #2c3e50; /* Old browsers */
+	background: -moz-linear-gradient(left, #2c3e50 0%, #526170 50%, #9ba3ac 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#2c3e50), color-stop(50%,#526170), color-stop(100%,#9ba3ac)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #2c3e50 0%,#526170 50%,#9ba3ac 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #2c3e50 0%,#526170 50%,#9ba3ac 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #2c3e50 0%,#526170 50%,#9ba3ac 100%); /* IE10+ */
+	background: linear-gradient(to right, #2c3e50 0%,#526170 50%,#9ba3ac 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c3e50', endColorstr='#9ba3ac',GradientType=1 ); /* IE6-9 */
 }
 
 .wrap .list li ul li a{
@@ -233,12 +297,14 @@ body {
 }
 
 .wrap .rightcolum {
+	width: 252px;
+	height: 1326px;
+
 	position: absolute;
-	background: #3f5467;
-	height: 1480px;
-	width: 250px;
 	right: 60px;
-	border-right: 1px solid #c5cfdc;
+	
+	background: white;
+	border-left: 1px solid #cccccc;
 }
 
 .list li ul{
@@ -248,9 +314,11 @@ body {
 .ad {
 	position: absolute;
 	left: 10px;
-	top: 100px;
-	color: white;
-	font: 19px/1.5em Times New Roman, serif;
+	top: 10px;
+
+	color: #3498db;
+
+	font-size: 19px;
 	font-weight: bold;
 }
 
@@ -343,4 +411,8 @@ body {
 	height: 30px; 
 
 	display: none;
+}
+
+.error {
+	color: red;
 }

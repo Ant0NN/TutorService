@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.db import transaction
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
@@ -8,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from BaseApp.models import CustomUser, Tutor, Pupil, Additional_information, Mail, Messages, Views, TypeSubject, Subject
 import datetime
 import re
-from django.views.generic import ListView
+from django.views.generic import ListView, View
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import FormMixin
 from BaseApp.forms import Log_in, Registration, Tutor_settings_form, Additional_inf_settings_form, Additions_form, Custom_user_form, Contact_form
@@ -40,6 +42,9 @@ class homepage(ListView, TemplateResponseMixin, FormMixin):
             u = Tutor.objects.filter(username=self.request.user.id)
             if not u:
                 context["is_authenticated"] = True
+                context["is_tutor"] = False
+            else:
+                context["is_tutor"] = True
         return context
 
     def get_queryset(self, **kwargs):
@@ -55,6 +60,20 @@ class homepage(ListView, TemplateResponseMixin, FormMixin):
         self.object_list = self.get_queryset()
         context = self.get_context_data(object_list=self.object_list)
         return self.render_to_response(context)
+
+class letter_list(homepage):
+    template_name = 'BaseApp/mail.html'
+    context_object_name = 'email'
+    model = CustomUser
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(letter_list, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(letter_list, self).get_context_data(**kwargs)
+        context["email"] = CustomUser.objects.get(id=self.request.user.id)
+        return context
 
 class LoginView(homepage):
 
@@ -90,12 +109,18 @@ class LoginView(homepage):
 
 class mail(homepage):
     form_class = Contact_form
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(mail, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, **kwargs):
         return HttpResponseRedirect(reverse('tutor_service:homepage'))
+
+    def get_context_data(self, request, **kwargs):
+        context = super(mail, self).get_context_data(request, **kwargs)
+        context['error_message'] = request.GET['error_message']
+        return context
 
     def post(self, request, *args, **kwargs):
         contact_form = self.get_form(self.get_form_class())
@@ -111,25 +136,35 @@ class mail(homepage):
         category = contact_form.cleaned_data["category"]
         number_telephone = contact_form.cleaned_data["number_telephone"]
 
+        if validator_number_telephone(number_telephone):
+            mail = Mail()
+            custom_user = CustomUser.objects.get(email=to_email)
+            mail.user = custom_user
+            mail.from_email = self.request.user.email
+            mail.from_user = self.request.user
+            mail.date = datetime.datetime.now()
+            mail.save()
 
-        mail = Mail()
-        custom_user = CustomUser.objects.get(email=to_email)
-        mail.user = custom_user
-        mail.from_email = self.request.user.email
-        mail.from_user = self.request.user
-        mail.date = datetime.datetime.now()
-        mail.save()
+            messages = Messages()
+            messages.subject = mail
+            message = u'Здравствуйте , я '+last_name +' '+ first_name+','+category+u', '+u'хотел бы записаться к вам на репетиторство'+u'. Мои контактные данные: '+number_telephone
+            messages.message = message
+            messages.save()
 
-        messages = Messages()
-        messages.subject = mail
-        message = u'Здраствуйте, я '+last_name +' '+ first_name+','+category+u', '+u'хотел бы записаться к вам на репетиторство'+u'. Мои контактные данные: '+number_telephone
-        messages.message = message
-        messages.save()
-
-        return HttpResponseRedirect(reverse('tutor_service:homepage'))
+            return HttpResponseRedirect(reverse('tutor_service:homepage'))
+        else:
+            return HttpResponseRedirect(reverse('tutor_service:homepage'))
 
     def form_invalid(self, contact_form, to_email):
         return HttpResponseRedirect(reverse('tutor_service:homepage'))
+
+def validator_number_telephone(number_telephone):
+    p = re.compile('([0-9]{1,3}\s\([0-9]{2,8}\)\s[0-9]{1,6}\-[0-9]{1,6}\-[0-9]{1,6})|(\+[0-9]{1,3}\-[0-9]{2,8}\-[0-9]{1,6}\-[0-9]{1,6}\-[0-9]{1,6})|([0-9]{1,3}[0-9]{2,8}[0-9]{1,6}[0-9]{1,6}[0-9]{1,6})')
+    m = p.match(number_telephone)
+    if m:
+        return True
+    else:
+        return False
 
 class views(homepage):
 
@@ -147,15 +182,21 @@ class views(homepage):
         mes = Messages()
         custom_user = CustomUser.objects.get(email=to_email)
         if confirm_or_denial == 'denial':
+            with transaction.commit_on_success():
+                m.user = custom_user
+                m.from_email = request.user.email
+                m.from_user = request.user
+                m.date = datetime.datetime.now()
+                m.save()
 
-            m.user = custom_user
-            m.from_email = request.user.email
-            m.from_user = request.user
-            m.date = datetime.datetime.now()
-            m.save()
+                mes.subject = m
+                mes.message = u'Заявка отклонена'
+                mes.save()
 
-            mes.subject = m
-            mes.message = ''
+                #delete later
+
+                m = Mail.objects.filter(Q(user=request.user), Q(from_email=to_email))
+                m.delete()
         else:
             tutor = Tutor.objects.get(username=request.user)
             pupil = Pupil.objects.get(username=custom_user)
@@ -166,6 +207,22 @@ class views(homepage):
             view.date = datetime.datetime.now()
             view.save()
 
+            m.user = custom_user
+            m.from_email = request.user.email
+            m.from_user = request.user
+            m.date = datetime.datetime.now()
+            m.save()
+
+            mes.subject = m
+            mes.message = u'Заявка принята'
+            mes.save()
+
+            #delete later
+
+            m = Mail.objects.filter(Q(user=request.user), Q(from_email=to_email))
+            m.delete()
+
+        return HttpResponseRedirect(reverse('tutor_service:homepage'))
 
 @login_required
 def log_out(request):
@@ -231,7 +288,6 @@ def registration(request):
                     if int(category) == 2:
 
                         if tutor_form.is_valid() and add_form.is_valid():
-
                             first_name = request.POST["first_name"]
                             patronymic = request.POST["patronymic"]
                             if check(first_name):
@@ -266,6 +322,10 @@ def registration(request):
                                                            password=password, City=city,
                                                            Category=category, address=address)
                         u.save()
+                        pupil = Pupil()
+                        pupil.username = u
+                        pupil.save()
+
                 user = authenticate(username=username, password=password)
                 if user is not None:
                     if user.is_active:

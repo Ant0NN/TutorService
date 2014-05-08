@@ -10,35 +10,11 @@
             </form>
 				<br><span class="link"><a href="{% url 'tutor_service:registration' %}" id="reg">Регистрация</a></span>
 				<br><span class="link"><a href="#">Забыли пароль?</a></span>
-     {% endif %}
-{% endblock %}
-
-{% block mail %}
-        {% if user.is_authenticated %}
-        <div class="mail">
-            <a href="{% url 'tutor_service:settings' %}">Настройки</a>
-               {% for e in email.mail_set.all %}
-                     <p>{{e.from_email}}</p><br>
-                     <p>{{e.from_user}}</p><br>
-                        {% for messages in e.messages_set.all %}
-                            <p>{{messages.message}}</p><br>
-                        {% endfor %}
-                     <p>{{e.date}}</p><br>
-                     <div class="send message">
-                        <form action="#" method="post">{% csrf_token %}
-                            <input type="hidden" name="click" value="confirm"/>
-                            <input type="hidden" name="to_email" value="{{e.from_email}}"/>
-                            <input type="submit" value="Подтвердить"/>
-                        </form>
-                        <form action="#" method="post">{% csrf_token %}
-                            <input type="hidden" name="click" value="denial"/>
-                            <input type="hidden" name="to_email" value="{{e.from_email}}"/>
-                            <input type="submit" value="Откланить"/>
-                        </form>
-                     </div>
-               {% endfor %}
-        </div>
-        {% endif %}
+    {% else %}
+            <form action="{% url 'tutor_service:mail' %}" method="get">
+             <input type="submit" value="Моя почта"/>
+            </form>
+    {% endif %}
 {% endblock %}
 
 {% block list %}

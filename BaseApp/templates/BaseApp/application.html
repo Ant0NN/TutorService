@@ -7,34 +7,36 @@
 	<meta charset="utf-8">
 	<script src="{% static 'BaseApp/js/jquery.js'%}"></script>
 	<script type="text/javascript" src="{% static 'BaseApp/js/script.js'%}"></script>
+    <script src="{% static 'BaseApp/js/jquery.validate.min.js' %}"></script>
 	<link rel="stylesheet" type="text/css" href="{% static 'BaseApp/css/style.css' %}">
 </head>
 <body>
 	<div class="body">
 		<div class="header">
-			<img src="{%static 'BaseApp/img/left.jpg' %}">
+			<img src="{%static 'BaseApp/img/logo.png' %}">
 			<div class="menu">
-				<table>
-					<tr>
-						<td><a href="{% url 'tutor_service:homepage' %}">Главная</a></td>
-						<td><a href="">Категории</a></td>
-						<td><a href="">Информация</a></td>
-						<td><a href="">Вопросы/Ответы</a></td>
-					</tr>
-				</table>
+            <div class="left"></div>
+            <div class="right"></div>
+                <ul>
+                    <li><a href="{% url 'tutor_service:homepage' %}">Главная</a></li>
+                    <li><a href="">Категории</a></li>
+                    <li><a href="">Информация</a></li>
+				    <li><a href="">Вопросы/Ответы</a></li>
+                </ul>
 			</div>
 			<div class="baner">
-                <span class="title">Repetito.ru</span>
+                <span class="title"></span>
 			</div>
 			<div class="login">
                 {% if user.is_authenticated %}
                     <a href="{% url 'tutor_service:logout' %}">Logout</a>
-                {% block mail %} {% endblock %}
+                     <a href="{% url 'tutor_service:settings' %}">Настройки</a>
                 {% endif %}
                 {% block mainarea %} {% endblock %}
             </div>
 		</div>
 		<div class="wrap">
+          {% block left %}
 			<div class="leftcolum">
 				<div class="list">
 					<span class="title">Предметы</span>
@@ -49,6 +51,7 @@
                     {% endfor %}
 				</div>
 			</div>
+            {% endblock %}
 			<div class="rightcolum">
 				<div class="ad">ОБЪЯВЛЕНИЕ</div>
 				<div class="reviews">ПОСЛЕДНИЕ ОТЗЫВЫ</div>
@@ -58,6 +61,7 @@
                 {% block list %} {% endblock %}
                 {% block settings %} {% endblock %}
                 {% block add %} {% endblock %}
+                {% block mail %} {% endblock %}
 			</div>
 		</div>
 	</div>

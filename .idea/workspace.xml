@@ -23,28 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BaseApp/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="19" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="7191">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/settings.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="9" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="442">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="27" selection-start="3269" selection-end="3269" vertical-scroll-proportion="0.0" vertical-offset="968" max-vertical-offset="1666">
+            <state line="7" column="28" selection-start="201" selection-end="287" vertical-scroll-proportion="-0.0" vertical-offset="119" max-vertical-offset="1258">
               <folding />
             </state>
           </provider>
@@ -53,16 +35,16 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BaseApp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="108" selection-start="607" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="391">
+            <state line="8" column="75" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="408">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addSubject.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/addSubject.html">
+      <file leaf-file-name="mail.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/mail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="14" selection-start="771" selection-end="771" vertical-scroll-proportion="0.5026087" vertical-offset="0" max-vertical-offset="575">
+            <state line="24" column="44" selection-start="1400" selection-end="1400" vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="816">
               <folding />
             </state>
           </provider>
@@ -71,25 +53,25 @@
       <file leaf-file-name="application.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/application.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="7" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.0" vertical-offset="547" max-vertical-offset="1190">
+            <state line="50" column="32" selection-start="1865" selection-end="1865" vertical-scroll-proportion="-15.692307" vertical-offset="442" max-vertical-offset="1258">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BaseApp/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="47" selection-start="1528" selection-end="1528" vertical-scroll-proportion="0.0" vertical-offset="215" max-vertical-offset="816">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="registration.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="registration.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/registration.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="68" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="714">
+            <state line="14" column="14" selection-start="666" selection-end="666" vertical-scroll-proportion="0.41391304" vertical-offset="0" max-vertical-offset="714">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BaseApp/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="250" column="49" selection-start="9324" selection-end="9324" vertical-scroll-proportion="0.0" vertical-offset="3655" max-vertical-offset="7939">
               <folding />
             </state>
           </provider>
@@ -110,13 +92,15 @@
         <option value="$PROJECT_DIR$/BaseApp/decorators.py" />
         <option value="$PROJECT_DIR$/BaseApp/admin.py" />
         <option value="$PROJECT_DIR$/BaseApp/models.py" />
-        <option value="$PROJECT_DIR$/BaseApp/templates/BaseApp/registration.html" />
-        <option value="$PROJECT_DIR$/BaseApp/views.py" />
-        <option value="$PROJECT_DIR$/BaseApp/urls.py" />
-        <option value="$PROJECT_DIR$/BaseApp/templates/BaseApp/application.html" />
-        <option value="$PROJECT_DIR$/BaseApp/templates/BaseApp/login.html" />
-        <option value="$PROJECT_DIR$/BaseApp/forms.py" />
         <option value="$PROJECT_DIR$/BaseApp/templates/BaseApp/addSubject.html" />
+        <option value="$PROJECT_DIR$/BaseApp/templates/BaseApp/settings.html" />
+        <option value="$PROJECT_DIR$/BaseApp/forms.py" />
+        <option value="$PROJECT_DIR$/BaseApp/urls.py" />
+        <option value="$PROJECT_DIR$/BaseApp/templates/BaseApp/login.html" />
+        <option value="$PROJECT_DIR$/BaseApp/templates/BaseApp/mail.html" />
+        <option value="$PROJECT_DIR$/BaseApp/views.py" />
+        <option value="$PROJECT_DIR$/BaseApp/templates/BaseApp/application.html" />
+        <option value="$PROJECT_DIR$/BaseApp/templates/BaseApp/registration.html" />
       </list>
     </option>
   </component>
@@ -252,6 +236,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="SearchEverywhereHistory" value="" />
     <property name="FullScreen" value="false" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -259,6 +244,156 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="TutorService" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="TutorService" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="testToRun" value="" />
+      <option name="keywords" value="" />
+      <option name="params" value="" />
+      <option name="USE_PARAM" value="false" />
+      <option name="USE_KEYWORD" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="TutorService" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="TutorService" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="TutorService" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="TutorService" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Attests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="TutorService" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -340,9 +475,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/settings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="9" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="442">
-          <folding />
-        </state>
+        <state line="17" column="9" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="442" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/login.html">
@@ -361,9 +494,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/addSubject.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="30" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="391">
-          <folding />
-        </state>
+        <state line="3" column="30" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="391" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/application.html">
@@ -396,9 +527,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/settings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="9" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="442">
-          <folding />
-        </state>
+        <state line="17" column="9" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="442" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/login.html">
@@ -417,9 +546,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/addSubject.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="25" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="391">
-          <folding />
-        </state>
+        <state line="13" column="25" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="391" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/application.html">
@@ -459,9 +586,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/addSubject.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/application.html">
@@ -518,9 +643,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/settings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="39" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="442">
-          <folding />
-        </state>
+        <state line="8" column="39" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="442" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/forms.py">
@@ -570,9 +693,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/settings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="30" selection-start="419" selection-end="419" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="442">
-          <folding />
-        </state>
+        <state line="9" column="30" selection-start="419" selection-end="419" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="442" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TutorService/urls.py">
@@ -585,78 +706,81 @@
         <state line="24" column="32" selection-start="781" selection-end="781" vertical-scroll-proportion="-2.2911813" vertical-offset="1785" max-vertical-offset="2924" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BaseApp/decorators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="25" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.9617304" vertical-offset="0" max-vertical-offset="850" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BaseApp/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="47" selection-start="1528" selection-end="1528" vertical-scroll-proportion="0.0" vertical-offset="215" max-vertical-offset="816">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BaseApp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="4" selection-start="2316" selection-end="2318" vertical-scroll-proportion="0.0" vertical-offset="657" max-vertical-offset="1258" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BaseApp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="108" selection-start="607" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="13" selection-start="51" selection-end="55" vertical-scroll-proportion="0.06137184" vertical-offset="0" max-vertical-offset="554" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BaseApp/views.py">
+    <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/addSubject.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="19" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.0" vertical-offset="4278" max-vertical-offset="7191">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/registration.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="68" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/application.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="7" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.0" vertical-offset="547" max-vertical-offset="1190">
-          <folding />
-        </state>
+        <state line="14" column="19" selection-start="708" selection-end="708" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="357" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="115" selection-start="5446" selection-end="5446" vertical-scroll-proportion="0.79761904" vertical-offset="976" max-vertical-offset="1564" />
+        <state line="13" column="32" selection-start="510" selection-end="510" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="1547" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/login.html">
+    <entry file="file://$PROJECT_DIR$/BaseApp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="27" selection-start="3269" selection-end="3269" vertical-scroll-proportion="0.0" vertical-offset="968" max-vertical-offset="1666">
+        <state line="32" column="62" selection-start="1171" selection-end="1171" vertical-scroll-proportion="0.0" vertical-offset="678" max-vertical-offset="1258" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BaseApp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="75" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/settings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="9" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="442">
+        <state line="0" column="0" selection-start="0" selection-end="40" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="442" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BaseApp/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="25" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.7171381" vertical-offset="147" max-vertical-offset="850" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="28" selection-start="201" selection-end="287" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1258">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/addSubject.html">
+    <entry file="file://$PROJECT_DIR$/BaseApp/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="14" selection-start="771" selection-end="771" vertical-scroll-proportion="0.5026087" vertical-offset="0" max-vertical-offset="575">
+        <state line="40" column="47" selection-start="1528" selection-end="1528" vertical-scroll-proportion="0.7737105" vertical-offset="198" max-vertical-offset="799">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BaseApp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="250" column="49" selection-start="9324" selection-end="9324" vertical-scroll-proportion="0.0" vertical-offset="3655" max-vertical-offset="7939">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/mail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="44" selection-start="1400" selection-end="1400" vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/application.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="32" selection-start="1865" selection-end="1865" vertical-scroll-proportion="-15.692307" vertical-offset="442" max-vertical-offset="1258">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BaseApp/templates/BaseApp/registration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="14" selection-start="666" selection-end="666" vertical-scroll-proportion="0.41391304" vertical-offset="0" max-vertical-offset="714">
           <folding />
         </state>
       </provider>
