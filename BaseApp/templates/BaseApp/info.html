@@ -1,0 +1,55 @@
+{% extends 'BaseApp/application.html' %}
+
+{% block list %}
+
+                <div class="person">
+
+                    <div class="photo">
+                        <img class="img-thumbnail" src="/media/{{ Tutor.avatar }}" width="20%"/><br>
+                         Рейтинг: {{ r.rating }}
+
+                    </div>
+                    <div class="about">
+                            {{ custom_user.first_name }}
+                            {{ custom_user.patronymic }}<br>
+                            Стоимость: {{Tutor.experience}}<br>
+                            Образование: {{Tutor.education}}<br>
+                            Место работы: {{Tutor.work}}<br>
+                            Место проведения: {{Tutor.venue_of}}<br>
+
+                            Предмет: {{add.subject_name}}<br>
+                            Раздел: {{add.section}}<br>
+                            Дополнение: {{add.additions}}<br>
+                            Категория ученика: {{add.pupil_category}}<br>
+                            Цена: {{add.price}}<br><br><br><br>
+                            <div class="bid">
+                            {% if is_authenticated %}
+                                    Отправить заявку: <input type="checkbox"/>
+                                         <form id="bid" action="{% url 'tutor_service:send_contact_form' %}" method="post"> {% csrf_token %}
+                                                {{ contact_form.as_p }}
+                                                <input type="hidden" name="to_email" value="{{ Tutor.email }}">
+                                                <input type="submit" name="send_statement" value="Отправить" class="btn-navbar" ng-model="send"/>
+                                         </form>
+                            {% endif %}
+                            </div>
+
+                            {% if is_authenticated %}
+                                Оценить:
+                                <form action="{% url 'tutor_service:tutor_info' id %}" method="post">{% csrf_token %}
+                                    {{ rating }}
+                                    {{ comment.as_p }}
+                                 <p><input type="submit" value="Comment"/></p>
+                                </form>
+
+                            {% endif %}
+                                Comments:
+                                <ul>
+                                    {% for comm in Tutor.reviews_set.all %}
+                                         <li>{{ comm.pupil.username }} : {{comm.review}}  : {{comm.rating}} </li>
+                                    {% endfor %}
+                                </ul>
+
+
+                </div>
+
+{% endblock %}

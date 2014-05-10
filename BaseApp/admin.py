@@ -9,7 +9,7 @@ class ViewDispForCustomUser(admin.ModelAdmin):
     list_display = ('username', 'first_name', 'patronymic', 'last_name', 'email', 'City', 'address')
 
 class ViewDispForTutor(admin.ModelAdmin):
-    list_display = ('avatar', 'username', 'experience', 'education', 'work', 'venue_of','rating')
+    list_display = ('avatar', 'username', 'experience', 'education', 'work', 'venue_of')
 
 class ViewDispForPupil(admin.ModelAdmin):
     list_display = ('avatar', 'username', 'work')

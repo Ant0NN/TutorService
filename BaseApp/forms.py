@@ -7,6 +7,8 @@ import json
 
 
 CHOICES = ((1, '-------'), (2, 'Репетитор'), (3, 'Ученик'))
+CHOICES2 = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'))
+
 
 class Registration(forms.Form):
     username = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': 'Логин'}), label='')
@@ -59,7 +61,7 @@ class Tutor_settings_form(forms.ModelForm):
     avatar = forms.ImageField(label='', required=False)
     class Meta:
         model = Tutor
-        exclude = ('username', 'rating',)
+        exclude = ('username',)
 
 class Additional_inf_settings_form(forms.ModelForm):
     subject_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Предмет', 'type': 'text'}), label='', required=True)
@@ -85,3 +87,9 @@ class Contact_form(forms.Form):
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Фамилия', 'type': 'text'}), label='', required=True)
     category = forms.CharField(widget=forms.Select(choices=CHOICES_for_contact_form), label='', help_text="<br>выберете категорию из списка", required=True)
     number_telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Номер телефона', 'type': 'text'}), label='', required=True)
+
+class Rating_form(forms.Form):
+    rating = forms.CharField(widget=forms.Select(choices=CHOICES2, attrs={'ng-model': 'checked'}), label='', required=True)
+
+class CommentForm(forms.Form):
+    comment_text = forms.CharField(max_length=10000, widget=forms.Textarea)

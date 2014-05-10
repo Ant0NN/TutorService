@@ -24,7 +24,7 @@ class Tutor(models.Model):
     venue_of = models.CharField(max_length=50)
     avatar = models.ImageField(blank=True, upload_to="tutor_avatar", null=True)
     username = models.ForeignKey(CustomUser, primary_key=True)
-    rating = models.FloatField(null=True, default=0)
+
 
 class Pupil(models.Model):
     work = models.CharField(max_length=50, null=True)
@@ -45,9 +45,19 @@ class Views(models.Model):
     pupil = models.ForeignKey(to=Pupil)
     date = models.DateField(auto_now_add=True)
 
+
+class Rating(models.Model):
+    rating = models.FloatField(null=True, default=0)
+    count = models.IntegerField(default=0)
+    #pupil_name = models.ForeignKey(Pupil)
+    tutor_name = models.ForeignKey(Tutor, unique=True)
+
+
 class Reviews(models.Model):
     tutor = models.ForeignKey(Tutor)
+    pupil = models.ForeignKey(Pupil)
     review = models.TextField(null=True)
+    rating = models.FloatField(null=True, default=0)
 
 class Mail(models.Model):
     user = models.ForeignKey(CustomUser)

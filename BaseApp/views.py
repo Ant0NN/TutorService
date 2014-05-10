@@ -7,13 +7,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from BaseApp.models import CustomUser, Tutor, Pupil, Additional_information, Mail, Messages, Views, TypeSubject, Subject
+from BaseApp.models import CustomUser, Tutor, Pupil, Additional_information, Mail, Messages, Views, TypeSubject, Subject, Rating, Reviews
 import datetime
 import re
 from django.views.generic import ListView, View
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import FormMixin
-from BaseApp.forms import Log_in, Registration, Tutor_settings_form, Additional_inf_settings_form, Additions_form, Custom_user_form, Contact_form
+from BaseApp.forms import Log_in, Registration, Tutor_settings_form, Additional_inf_settings_form, Additions_form, Custom_user_form, Contact_form, Rating_form, CommentForm
 from django.utils.decorators import method_decorator
 from BaseApp.decorators import no_login_please, check_add_subject__for_tutor, check_questionnaire__for_tutor
 from django.core.exceptions import ObjectDoesNotExist
@@ -30,6 +30,7 @@ class homepage(ListView, TemplateResponseMixin, FormMixin):
     def get_context_data(self, **kwargs):
         context = super(homepage, self).get_context_data(**kwargs)
         context["contact_form"] = Contact_form()
+        context["rating"] = Rating.objects.all()
         context["type_subject"] = TypeSubject.objects.all()
         count = Tutor.objects.count()
         p = []
@@ -106,6 +107,43 @@ class LoginView(homepage):
 
     def form_invalid(self, form):
         return self.get(self.request)
+
+def info(request, id):
+    c = CustomUser.objects.get(id=id)
+    t = Tutor.objects.get(username=c)
+    a = Additional_information.objects.get(tutor=t)
+    r = Rating.objects.get(tutor_name=t)
+    comment = CommentForm()
+    rating = Rating_form()
+    is_authenticated = False
+    contact_form = Contact_form()
+    if request.user.is_authenticated():
+        u = Tutor.objects.filter(username=request.user.id)
+        if not u:
+            is_authenticated = True
+
+    if request.method == "POST":
+        comment = CommentForm(request.POST)
+        rr = Rating_form(request.POST)
+        if comment.is_valid() and rr.is_valid():
+            q = Reviews()
+            q.tutor = t
+            q.review = comment.cleaned_data["comment_text"]
+            q.pupil = Pupil.objects.get(username=CustomUser.objects.get(id=request.user.id))
+            d = Rating.objects.get(tutor_name=t)
+            d.count += 1
+            d.rating = round((d.rating*(d.count-1)+float(rr.cleaned_data["rating"]))/d.count, 3)
+            d.tutor_name = t
+            q.rating = rr.cleaned_data["rating"]
+            q.save()
+            d.save()
+            comment = CommentForm()
+            r = Rating.objects.get(tutor_name=t)
+            return render(request, 'BaseApp/info.html',
+                  {'Tutor': t, 'custom_user': c, 'add': a, 'r': r, "comment": comment, "rating": rating, "id": id, "is_authenticated": is_authenticated, "contact_form": contact_form})
+    return render(request, 'BaseApp/info.html',
+                  {'Tutor': t, 'custom_user': c, 'add': a, 'r': r, "comment": comment, "rating": rating, "id": id, "is_authenticated" : is_authenticated, "contact_form": contact_form})
+
 
 class mail(homepage):
     form_class = Contact_form
@@ -304,6 +342,11 @@ def registration(request):
                                     new_add = add_form.save(commit=False)
                                     new_add.tutor = u
                                     new_add.save()
+                                    d = Rating()
+                                    d.count = 0
+                                    d.rating = 0
+                                    d.tutor_name = new_tutor
+                                    d.save()
                                 else:
                                     return render(request, 'BaseApp/registration.html',
                                               {"error_message": "Пожалуйста, корректно введите свои данные", 'reg_form': r,
