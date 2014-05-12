@@ -8,6 +8,7 @@ import json
 
 CHOICES = ((1, '-------'), (2, 'Репетитор'), (3, 'Ученик'))
 CHOICES2 = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'))
+CHOICES3 = (('физра', 'физра'), ('матан', 'матан'), ('хуитан', 'хуитан'), ('что-то там', 'что-то там'), ('иди на хуй', 'иди на хуй'))
 
 
 class Registration(forms.Form):
@@ -64,7 +65,7 @@ class Tutor_settings_form(forms.ModelForm):
         exclude = ('username',)
 
 class Additional_inf_settings_form(forms.ModelForm):
-    subject_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Предмет', 'type': 'text'}), label='', required=True)
+    subject_name = forms.CharField(widget=forms.Select(choices=CHOICES3, attrs={'ng-model': 'checked'}), label='', required=True)
     section = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Раздел', 'type': 'text'}), label='', required=False)
     additions = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Дополнение', 'type': 'text'}), label='', required=False)
     pupil_category = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Категория ученика', 'type': 'text'}), label='', required=True)
@@ -74,7 +75,7 @@ class Additional_inf_settings_form(forms.ModelForm):
         exclude = ('tutor',)
 
 class Additions_form(forms.Form):
-    subject_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Предмет', 'type': 'text'}), label='', required=True)
+    subject_name = forms.CharField(widget=forms.Select(choices=CHOICES3, attrs={'ng-model': 'checked'}), label='', required=True)
     section = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Раздел', 'type': 'text'}), label='', required=False)
     additions = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Дополнение', 'type': 'text'}), label='', required=False)
     pupil_category = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Категория ученика', 'type': 'text'}), label='', required=True)

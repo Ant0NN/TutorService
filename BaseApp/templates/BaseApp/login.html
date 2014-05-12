@@ -46,8 +46,9 @@
                             Дополнение: {{add.additions}}<br>
                             Категория ученика: {{add.pupil_category}}<br>
                             Цена: {{add.price}}<br>
-                            <a href="/repetito.ru/info/{{ user.id }}">Отзывы</a>
+
                     {% endfor %}
+                    <a href="/repetito.ru/info/{{ user.id }}">Отзывы</a>
                 </div>
                 <div class="bid">
                     {% if is_authenticated %}

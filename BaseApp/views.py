@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from BaseApp.models import CustomUser, Tutor, Pupil, Additional_information, Mail, Messages, Views, TypeSubject, Subject, Rating, Reviews
 import datetime
 import re
+from math import ceil
 from django.views.generic import ListView, View
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import FormMixin
@@ -24,7 +25,7 @@ class homepage(ListView, TemplateResponseMixin, FormMixin):
     success_url = reverse_lazy("tutor_service:homepage")
     queryset = CustomUser
     context_object_name = 'custom_user'
-    paginate_by = 2
+    paginate_by = 5
     allow_empty = True
 
     def get_context_data(self, **kwargs):
@@ -34,7 +35,7 @@ class homepage(ListView, TemplateResponseMixin, FormMixin):
         context["type_subject"] = TypeSubject.objects.all()
         count = Tutor.objects.count()
         p = []
-        for page in range(count/self.paginate_by):
+        for page in range(int(ceil(count*1.0/self.paginate_by))):
             p.append(page + 1)
         context["count"] = p
 
@@ -111,7 +112,7 @@ class LoginView(homepage):
 def info(request, id):
     c = CustomUser.objects.get(id=id)
     t = Tutor.objects.get(username=c)
-    a = Additional_information.objects.get(tutor=t)
+    #a = Additional_information.objects.get(tutor=t)
     r = Rating.objects.get(tutor_name=t)
     comment = CommentForm()
     rating = Rating_form()
@@ -140,9 +141,9 @@ def info(request, id):
             comment = CommentForm()
             r = Rating.objects.get(tutor_name=t)
             return render(request, 'BaseApp/info.html',
-                  {'Tutor': t, 'custom_user': c, 'add': a, 'r': r, "comment": comment, "rating": rating, "id": id, "is_authenticated": is_authenticated, "contact_form": contact_form})
+                  {'Tutor': t, 'custom_user': c, 'r': r, "comment": comment, "rating": rating, "id": id, "is_authenticated": is_authenticated, "contact_form": contact_form})
     return render(request, 'BaseApp/info.html',
-                  {'Tutor': t, 'custom_user': c, 'add': a, 'r': r, "comment": comment, "rating": rating, "id": id, "is_authenticated" : is_authenticated, "contact_form": contact_form})
+                  {'Tutor': t, 'custom_user': c, 'r': r, "comment": comment, "rating": rating, "id": id, "is_authenticated" : is_authenticated, "contact_form": contact_form})
 
 
 class mail(homepage):

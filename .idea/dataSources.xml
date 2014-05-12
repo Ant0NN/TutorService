@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2790546970">
+    <data-source source="LOCAL" name="Django default" uuid="322b5298-94b4-4ec6-8fa5-8e225ff33e60">
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Anton\Downloads\TutorService-master(2)\TutorService-master\dataBase.db</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
