@@ -1,5 +1,24 @@
 {% extends 'BaseApp/application.html' %}
 
+{% block mainarea %}
+    {% if user.is_anonymous %}
+            <form action="{% url 'tutor_service:login' %}" method="POST">{% csrf_token %}
+                {% for loginform in f %}
+                    {{loginform}}
+                {% endfor %}
+                <input id="login" type="submit" value="Вход">
+            </form>
+				<br><span class="link"><a href="{% url 'tutor_service:registration' %}" id="reg">Регистрация</a></span>
+				<br><span class="link"><a href="#">Забыли пароль?</a></span>
+    {% else %}
+        <div class="cube">
+            <a href="{% url 'tutor_service:logout' %}">Выйти</a><br>
+            <a href="{% url 'tutor_service:settings' %}">Настройки</a><br>
+            <a href="{% url 'tutor_service:mail' %}">Почта</a><br>
+        </div>
+    {% endif %}
+{% endblock %}
+
 {% block settings %}
         <div>
             <form action="{% url  'tutor_service:settings' %}" enctype="multipart/form-data" method="POST">{% csrf_token %}
