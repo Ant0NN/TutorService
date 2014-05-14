@@ -25,37 +25,10 @@
     <div>
         {{reg_form.as_p}}
          <div class="tutor">
-             <input id="id_name" type="text" name="first_name" placeholder="Имя"><br><br>
-             <input id="id_patronymic" type="text" name="patronymic" placeholder="Отчество">
+             <input type="text" name="first_name" placeholder="Имя"><br><br>
+             <input type="text" name="patronymic" placeholder="Отчество">
             {{tutor_form.as_p}}
-             <p> <select id="id_section" name="section" type="text">
-                <option value="1">Выберете раздел</option>
-                {% for tsubj in tsubj %}
-                <option value="{{ tsubj.type_subject }}">{{ tsubj.type_subject }}</option>
-                 {% endfor %}
-             </select></p>
-             <p><select id="id_subject_name" name="subject_name" type="text">
-                 <option value="">Выберете предмет</option>
-                     <option class="firstSelect" value="Математика">Математика</option>
-                     <option class="firstSelect" value="Физика">Физика</option>
-                     <option class="firstSelect" value="Информатика">Информатика</option>
-                     <option class="firstSelect" value="Химия">Химия</option>
-                     <option class="firstSelect" value="Биология">Биология</option>
-                     <option class="firstSelect" value="История">История</option>
-                     <option class="firstSelect" value="Обществознание">Обществознание</option>
-                     <option class="firstSelect" value="Экономика">Экономика</option>
-                     <option class="firstSelect" value="Русский язык">Русский язык</option>
-                     <option class="firstSelect" value="Литература">Литература</option>
-                     <option class="secondSelect" value="Английский">Английский</option>
-                     <option class="secondSelect" value="Немецкий">Немецкий</option>
-                     <option class="secondSelect" value="Китайский">Китайский</option>
-                     <option class="secondSelect" value="Японский">Японский</option>
-                     <option class="thirdSelect" value="Математический анализ">Математический анализ</option>
-                     <option class="thirdSelect" value="Высшая математика">Высшая математика</option>
-             </select></p>
-             <p> <input id="id_additions" name="additions" placeholder="Дополнение" type="text"></p>
-             <p> <input id="id_price" name="price" placeholder="Цена" type="number"></p>
-             <p> <input id="id_pupil_category" name="pupil_category" placeholder="Категория ученика" type="text"></p>
+            {{add_form.as_p}}
         </div>
         <input type="submit" value="Register"/>
     </div>

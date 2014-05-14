@@ -1,24 +1,5 @@
 {% extends 'BaseApp/application.html' %}
 
-{% block mainarea %}
-    {% if user.is_anonymous %}
-            <form action="{% url 'tutor_service:login' %}" method="POST">{% csrf_token %}
-                {% for loginform in f %}
-                    {{loginform}}
-                {% endfor %}
-                <input id="login" type="submit" value="Вход">
-            </form>
-				<br><span class="link"><a href="{% url 'tutor_service:registration' %}" id="reg">Регистрация</a></span>
-				<br><span class="link"><a href="#">Забыли пароль?</a></span>
-    {% else %}
-        <div class="cube">
-            <a href="{% url 'tutor_service:logout' %}">Выйти</a><br>
-            <a href="{% url 'tutor_service:settings' %}">Настройки</a><br>
-            <a href="{% url 'tutor_service:mail' %}">Почта</a><br>
-        </div>
-    {% endif %}
-{% endblock %}
-
 {% block mail %}
         {% if user.is_authenticated %}
                {% for e in email.mail_set.all %}
@@ -33,13 +14,28 @@
                         <form action="{% url 'tutor_service:views' %}" method="post">{% csrf_token %}
                             <input type="hidden" name="click" value="confirm"/>
                             <input type="hidden" name="to_email" value="{{e.from_email}}"/>
-                            <input type="submit" value="Подтвердить"/>
+                            <input type="submit" value="Подтвердить" onclick="foo()"/>
                         </form>
                         <form action="{% url 'tutor_service:views' %}" method="post">{% csrf_token %}
                             <input type="hidden" name="click" value="denial"/>
                             <input type="hidden" name="to_email" value="{{e.from_email}}"/>
-                            <input type="submit" value="Отклонить"/>
+                            <input type="button" value="Отклонить" onclick="foo()"/>
                         </form>
+                         <script>
+                            function foo() {
+                                alert(true);
+                                var xhr = new XMLHttpRequest();
+                                var params = 'click=' + encodeURIComponent(click) +
+                                  '&to_email=' + encodeURIComponent(to_email);
+                                xhr.open("POST", "{% url 'tutor_service:views' %}", true)
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+                                xhr.onreadystatechange = function() {
+                                    if (xhr.readyState != 4) return;
+                                }
+                                xhr.send(params);
+                            }
+                         </script>
                         {% endif %}
                      </div>
                {% endfor %}

@@ -1,5 +1,4 @@
 {% extends 'BaseApp/application.html' %}
-{% load staticfiles %}
 
 {% block mainarea %}
     {% if user.is_anonymous %}
@@ -7,81 +6,75 @@
                 {% for loginform in f %}
                     {{loginform}}
                 {% endfor %}
-                <input id="login" type="submit" value="Вход">
+                <input type="submit" value="Вход">
             </form>
 				<br><span class="link"><a href="{% url 'tutor_service:registration' %}" id="reg">Регистрация</a></span>
 				<br><span class="link"><a href="#">Забыли пароль?</a></span>
     {% else %}
-        <div class="cube">
-            <a href="{% url 'tutor_service:logout' %}">Выйти</a><br>
-            <a href="{% url 'tutor_service:settings' %}">Настройки</a><br>
-            <a href="{% url 'tutor_service:mail' %}">Почта</a><br>
-        </div>
+            <form action="{% url 'tutor_service:mail' %}" method="get">
+             <input type="submit" value="Моя почта"/>
+            </form>
     {% endif %}
 {% endblock %}
 
 {% block list %}
                 {% for user in custom_user %}
                 <div class="person">
-                        <div class="bid">
-                            {% if is_authenticated %}
-                                    <span id="img"><img src="{% static 'BaseApp/img/bid.png' %}"></span>
-                                    <div class="fix">
-                                        <div class="formToBid">
-                                            <span class="btn">Закрыть</span>
-                                             <form id="bid" action="/" method="post"> {% csrf_token %}
-                                                    {{ contact_form.as_p }}
-                                                    <input type="hidden" name="to_email" value="{{ user.email }}">
-                                                 <input id="sendBid" type="button" value="Отправить">
-                                             </form>
-                                        </div>
-                                    </div>
-                            {% endif %}
-                    </div>
                     {% for tutors in user.tutor_set.all %}
                     <div class="photo">
                         <img class="img-thumbnail" src="/media/{{ tutors.avatar }}" width="20%"/><br>
-                        Рейтинг:
-                         {% for r in rating %}
-                             {% if r.tutor_name.username == tutors.username %}
-                                  {{r.rating}}
-                             {% endif %}
-                         {% endfor %}
+                         Рейтинг:
+                        {% for r in tutors.rating_set.all %}
+                            {{r.rating}}
+                        {% endfor %}
+
                     </div>
                     <div class="about">
-                           <span class="name">{{ user.first_name }}
+                            {{ user.first_name }}
                             {{ user.patronymic }}<br>
-                            </span>
-                            Стаж: {{tutors.experience}}<br>
-                            Образование:
-                                {{tutors.education}}<br>
+                            {{ tutors.username }}<br>
+                            Стоимость: {{tutors.experience}}<br>
+                            Образование: {{tutors.education}}<br>
+                            Место работы: {{tutors.work}}<br>
                             Место проведения: {{tutors.venue_of}}<br>
-                        {% for add in user.additional_information_set.all %}
-                       <div class="subject">
-                            <span class>{{add.subject_name}}<br></span>
-                           {% if add.additions == '' %}
-                                Дополнение: {{add.additions}}<br>
-                           {% endif %}
+                    {% endfor %}
+
+                    {% for add in user.additional_information_set.all %}
+                            Предмет: {{add.subject_name}}<br>
+                            Раздел: {{add.section}}<br>
+                            Дополнение: {{add.additions}}<br>
                             Категория ученика: {{add.pupil_category}}<br>
-                            Цена занятий: {{add.price}}<br>
-                       </div>
-                    {% endfor %}
-                    {% endfor %}
+                            Цена: {{add.price}}<br>
 
-                    <a href="/repetito.ru/info/{{ user.id }}">Отзывы</a>
+                    {% endfor %}
+                    <a href="{% url 'tutor_service:tutor_info' user.id %}">Отзывы</a>
                 </div>
-
+                <div class="bid">
+                    {% if is_authenticated %}
+                            Отправить заявку: <input type="checkbox"/>
+                                 <form id="bid" action="{% url 'tutor_service:send_contact_form' %}" method="post"> {% csrf_token %}
+                                        {{ contact_form.as_p }}
+                                        <input type="hidden" name="to_email" value="{{ user.email }}">
+                                        <input type="submit" name="send_statement" value="Отправить" class="btn-navbar" ng-model="send"/>
+                                 </form>
+                    {% endif %}
+                </div>
         </div>
+                <hr>
 
                 {% endfor %}
-                {% if user.is_authenticated %}
-                       {% for page in count %}
-                                <a href="{% url 'tutor_service:list_homepage' page %}">{{page}}</a>
-                       {% endfor %}
+                {% if not d %}
+                    {% if user.is_authenticated %}
+                           {% for page in count %}
+                                    <a href="{% url 'tutor_service:list_homepage' page %}">{{page}}</a>
+                           {% endfor %}
+                    {% else %}
+                            {% for page in count %}
+                                    <a href="{% url 'tutor_service:list' page %}">{{page}}</a>
+                            {% endfor %}
+                    {% endif %}
                 {% else %}
-                        {% for page in count %}
-                                <a href="{% url 'tutor_service:list' page %}">{{page}}</a>
-                        {% endfor %}
+                    Извините, преподавателей по этому предмету нет.
                 {% endif %}
 
 {% endblock %}

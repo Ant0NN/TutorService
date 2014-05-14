@@ -3,13 +3,14 @@
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db import transaction
 from django.db.models import Q
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from BaseApp.models import CustomUser, Tutor, Pupil, Additional_information, Mail, Messages, Views, TypeSubject, Subject, Rating, Reviews
 import datetime
 import re
+from math import ceil
 from django.views.generic import ListView, View
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import FormMixin
@@ -24,17 +25,16 @@ class homepage(ListView, TemplateResponseMixin, FormMixin):
     success_url = reverse_lazy("tutor_service:homepage")
     queryset = CustomUser
     context_object_name = 'custom_user'
-    paginate_by = 3
+    paginate_by = 5
     allow_empty = True
 
     def get_context_data(self, **kwargs):
         context = super(homepage, self).get_context_data(**kwargs)
         context["contact_form"] = Contact_form()
         context["type_subject"] = TypeSubject.objects.all()
-        context["rating"] = Rating.objects.all()
         count = Tutor.objects.count()
         p = []
-        for page in range(count/self.paginate_by):
+        for page in range(int(ceil(count*1.0/self.paginate_by))):
             p.append(page + 1)
         context["count"] = p
 
@@ -108,6 +108,33 @@ class LoginView(homepage):
     def form_invalid(self, form):
         return self.get(self.request)
 
+def categories(request):
+    type_subject = TypeSubject.objects.all()
+    return render(request, 'BaseApp/categories.html', {"type_subject": type_subject, })
+
+
+def sort(request, subj_name):
+    custom_user = []
+    for x in Additional_information.objects.filter(subject_name=subj_name):
+        custom_user.append(CustomUser.objects.get(username=x.tutor))
+    p = []
+    for page in range(int(ceil(Tutor.objects.count()*1.0/5))):
+        p.append(page + 1)
+    is_authenticated = False
+    contact_form = Contact_form()
+    if request.user.is_authenticated():
+        u = Tutor.objects.filter(username=request.user.id)
+        if not u:
+            is_authenticated = True
+    d = True
+    if len(custom_user):
+        d = False
+
+    return render(request, 'BaseApp/login.html', {"custom_user": custom_user, "count": p, "is_authenticated": is_authenticated, "contact_form ": contact_form, "d": d})
+
+
+
+
 def info(request, id):
     c = CustomUser.objects.get(id=id)
     t = Tutor.objects.get(username=c)
@@ -160,13 +187,12 @@ class mail(homepage):
         return context
 
     def post(self, request, *args, **kwargs):
-        if request.is_ajax():
-            contact_form = self.get_form(self.get_form_class())
-            to_email = request.POST["to_email"]
-            if contact_form.is_valid():
-                return self.form_valid(contact_form, to_email)
-            else:
-                return self.form_invalid(contact_form, to_email)
+        contact_form = self.get_form(self.get_form_class())
+        to_email = request.POST["to_email"]
+        if contact_form.is_valid():
+            return self.form_valid(contact_form, to_email)
+        else:
+            return self.form_invalid(contact_form, to_email)
 
     def form_valid(self, contact_form, to_email):
         first_name = contact_form.cleaned_data["first_name"]
@@ -220,20 +246,21 @@ class views(homepage):
         mes = Messages()
         custom_user = CustomUser.objects.get(email=to_email)
         if confirm_or_denial == 'denial':
-            m.user = custom_user
-            m.from_email = request.user.email
-            m.from_user = request.user
-            m.date = datetime.datetime.now()
-            m.save()
+            with transaction.commit_on_success():
+                m.user = custom_user
+                m.from_email = request.user.email
+                m.from_user = request.user
+                m.date = datetime.datetime.now()
+                m.save()
 
-            mes.subject = m
-            mes.message = u'Заявка отклонена'
-            mes.save()
+                mes.subject = m
+                mes.message = u'Заявка отклонена'
+                mes.save()
 
-            #delete later
+                #delete later
 
-            m = Mail.objects.filter(Q(user=request.user), Q(from_email=to_email))
-            m.delete()
+                m = Mail.objects.filter(Q(user=request.user), Q(from_email=to_email))
+                m.delete()
         else:
             tutor = Tutor.objects.get(username=request.user)
             pupil = Pupil.objects.get(username=custom_user)
@@ -277,10 +304,6 @@ def registration(request):
             tutor_form = Tutor_settings_form(request.POST, request.FILES)
 
             add_form = Additional_inf_settings_form(request.POST)
-
-            tsubj = TypeSubject.objects.all()
-
-            subj = Subject.objects.all()
 
             if r.is_valid():
                 username = request.POST["username"]
@@ -383,15 +406,13 @@ def registration(request):
                     return HttpResponseRedirect(reverse('BaseApp:login'))
             else:
                 return render(request, 'BaseApp/registration.html',
-                              {'reg_form': r, 'tutor_form': tutor_form, 'add_form': add_form, 'tsubj' : tsubj, 'subj': subj})
+                              {'reg_form': r, 'tutor_form': tutor_form, 'add_form': add_form})
         else:
             r = Registration()
-            tsubj = TypeSubject.objects.all()
-            subj = Subject.objects.all()
             tutor_form = Tutor_settings_form(instance=Tutor())
             add_form = Additional_inf_settings_form(instance=Additional_information())
             return render(request, 'BaseApp/registration.html',
-                          {'reg_form': r, 'tutor_form': tutor_form, 'add_form': add_form, 'tsubj' : tsubj, 'subj': subj})
+                          {'reg_form': r, 'tutor_form': tutor_form, 'add_form': add_form})
     else:
         return HttpResponseRedirect(reverse('tutor_service:homepage'))
 
@@ -523,11 +544,3 @@ def validator_password(password):
         return True
     else:
         return False
-
-
-def ajax(request):
-    if request.is_ajax():
-        message = request.POST.get('name')
-    else:
-        message = 'work post'
-    return HttpResponse(message)
