@@ -1,0 +1,31 @@
+{% extends 'BaseApp/application.html' %}
+
+{% block mainarea %}
+    {% if user.is_anonymous %}
+            <form action="{% url 'tutor_service:login' %}" method="POST">{% csrf_token %}
+                {% for loginform in f %}
+                    {{loginform}}
+                {% endfor %}
+                <input type="submit" value="Вход">
+            </form>
+				<br><span class="link"><a href="{% url 'tutor_service:registration' %}" id="reg">Регистрация</a></span>
+				<br><span class="link"><a href="#">Забыли пароль?</a></span>
+    {% else %}
+            <form action="{% url 'tutor_service:mail' %}" method="get">
+             <input type="submit" value="Моя почта"/>
+            </form>
+    {% endif %}
+{% endblock %}
+
+{% block list %}
+        {% for tsubj in type_subject %}
+                 <li>{{ tsubj.type_subject }}
+                    <ul>
+                     {% for s in tsubj.subject_set.all %}
+                         <li><a href="{% url 'tutor_service:sort' s.subject %}">{{ s.subject }}</a></li>
+                     {% endfor %}
+                    </ul>
+                 </li>
+        {% endfor %}
+{% endblock %}
+

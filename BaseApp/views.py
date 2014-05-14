@@ -31,7 +31,6 @@ class homepage(ListView, TemplateResponseMixin, FormMixin):
     def get_context_data(self, **kwargs):
         context = super(homepage, self).get_context_data(**kwargs)
         context["contact_form"] = Contact_form()
-        context["rating"] = Rating.objects.all()
         context["type_subject"] = TypeSubject.objects.all()
         count = Tutor.objects.count()
         p = []
@@ -109,10 +108,36 @@ class LoginView(homepage):
     def form_invalid(self, form):
         return self.get(self.request)
 
+def categories(request):
+    type_subject = TypeSubject.objects.all()
+    return render(request, 'BaseApp/categories.html', {"type_subject": type_subject, })
+
+
+def sort(request, subj_name):
+    custom_user = []
+    for x in Additional_information.objects.filter(subject_name=subj_name):
+        custom_user.append(CustomUser.objects.get(username=x.tutor))
+    p = []
+    for page in range(int(ceil(Tutor.objects.count()*1.0/5))):
+        p.append(page + 1)
+    is_authenticated = False
+    contact_form = Contact_form()
+    if request.user.is_authenticated():
+        u = Tutor.objects.filter(username=request.user.id)
+        if not u:
+            is_authenticated = True
+    f = True
+    if len(custom_user):
+        f = False
+
+    return render(request, 'BaseApp/login.html', {"custom_user": custom_user, "count": p, "is_authenticated": is_authenticated, "contact_form ": contact_form, "f": f})
+
+
+
+
 def info(request, id):
     c = CustomUser.objects.get(id=id)
     t = Tutor.objects.get(username=c)
-    #a = Additional_information.objects.get(tutor=t)
     r = Rating.objects.get(tutor_name=t)
     comment = CommentForm()
     rating = Rating_form()

@@ -24,16 +24,15 @@
                     <div class="photo">
                         <img class="img-thumbnail" src="/media/{{ tutors.avatar }}" width="20%"/><br>
                          Рейтинг:
-                        {% for r in rating %}
-                            {% if r.tutor_name.username == tutors.username %}
-                                 {{r.rating}}
-                            {% endif %}
+                        {% for r in tutors.rating_set.all %}
+                            {{r.rating}}
                         {% endfor %}
 
                     </div>
                     <div class="about">
                             {{ user.first_name }}
                             {{ user.patronymic }}<br>
+                            {{ tutors.username }}<br>
                             Стоимость: {{tutors.experience}}<br>
                             Образование: {{tutors.education}}<br>
                             Место работы: {{tutors.work}}<br>
@@ -48,7 +47,7 @@
                             Цена: {{add.price}}<br>
 
                     {% endfor %}
-                    <a href="/repetito.ru/info/{{ user.id }}">Отзывы</a>
+                    <a href="{% url 'tutor_service:tutor_info' user.id %}">Отзывы</a>
                 </div>
                 <div class="bid">
                     {% if is_authenticated %}
@@ -64,14 +63,18 @@
                 <hr>
 
                 {% endfor %}
-                {% if user.is_authenticated %}
-                       {% for page in count %}
-                                <a href="{% url 'tutor_service:list_homepage' page %}">{{page}}</a>
-                       {% endfor %}
+                {% if not f %}
+                    {% if user.is_authenticated %}
+                           {% for page in count %}
+                                    <a href="{% url 'tutor_service:list_homepage' page %}">{{page}}</a>
+                           {% endfor %}
+                    {% else %}
+                            {% for page in count %}
+                                    <a href="{% url 'tutor_service:list' page %}">{{page}}</a>
+                            {% endfor %}
+                    {% endif %}
                 {% else %}
-                        {% for page in count %}
-                                <a href="{% url 'tutor_service:list' page %}">{{page}}</a>
-                        {% endfor %}
+                    Извините, преподавателей по этому предмету нет.
                 {% endif %}
 
 {% endblock %}

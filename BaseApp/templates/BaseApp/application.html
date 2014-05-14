@@ -19,7 +19,7 @@
             <div class="right"></div>
                 <ul>
                     <li><a href="{% url 'tutor_service:homepage' %}">Главная</a></li>
-                    <li><a href="">Категории</a></li>
+                    <li><a href="{% url 'tutor_service:categories' %}">Категории</a></li>
                     <li><a href="">Информация</a></li>
 				    <li><a href="">Вопросы/Ответы</a></li>
                 </ul>
@@ -44,7 +44,7 @@
                          <li>{{ tsubj.type_subject }}
                             <ul>
                              {% for s in tsubj.subject_set.all %}
-                                 <li>{{ s.subject }}</li>
+                                  <li><a href="{% url 'tutor_service:sort' s.subject %}">{{ s.subject }}</a></li>
                              {% endfor %}
                             </ul>
                          </li>

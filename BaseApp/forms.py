@@ -1,15 +1,16 @@
 __author__ = '12'
 # -*- coding: utf-8 -*-
 from django import forms
-from BaseApp.models import CustomUser, Tutor, Additional_information, ListCity
+from BaseApp.models import CustomUser, Tutor, Additional_information, ListCity, Subject, TypeSubject
 import json
 
 
 
 CHOICES = ((1, '-------'), (2, 'Репетитор'), (3, 'Ученик'))
 CHOICES2 = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'))
-CHOICES3 = (('физра', 'физра'), ('матан', 'матан'), ('хуитан', 'хуитан'), ('что-то там', 'что-то там'), ('иди на хуй', 'иди на хуй'))
 
+CHOICES3 = [(x.subject, x.subject) for x in Subject.objects.all()]
+CHOICES4 = [(x.type_subject, x.type_subject) for x in TypeSubject.objects.all()]
 
 class Registration(forms.Form):
     username = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': 'Логин'}), label='')
@@ -66,7 +67,7 @@ class Tutor_settings_form(forms.ModelForm):
 
 class Additional_inf_settings_form(forms.ModelForm):
     subject_name = forms.CharField(widget=forms.Select(choices=CHOICES3, attrs={'ng-model': 'checked'}), label='', required=True)
-    section = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Раздел', 'type': 'text'}), label='', required=False)
+    section = forms.CharField(widget=forms.Select(choices=CHOICES4, attrs={'ng-model': 'checked'}), label='', required=True)
     additions = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Дополнение', 'type': 'text'}), label='', required=False)
     pupil_category = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Категория ученика', 'type': 'text'}), label='', required=True)
     price = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Цена', 'type': 'number'}), label='', required=True)
